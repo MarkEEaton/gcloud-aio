@@ -139,13 +139,13 @@ class Storage:
         return data
 
     async def download(self, bucket: str, object_name: str, *,
-                       timeout: int = 10,
+                       timeout: int = 1000,
                        session: Optional[Session] = None) -> bytes:
         return await self._download(bucket, object_name, timeout=timeout,
                                     params={'alt': 'media'}, session=session)
 
     async def download_metadata(self, bucket: str, object_name: str, *,
-                                timeout: int = 10,
+                                timeout: int = 1000,
                                 session: Optional[Session] = None) -> dict:
         data = await self._download(bucket, object_name, timeout=timeout,
                                     session=session)
@@ -154,7 +154,7 @@ class Storage:
 
     async def list_objects(self, bucket: str, *, params: dict = None,
                            session: Optional[Session] = None,
-                           timeout: int = 10) -> dict:
+                           timeout: int = 1000) -> dict:
         token = await self.token.get()
         url = f'{API_ROOT}/{bucket}/o'
         headers = {
