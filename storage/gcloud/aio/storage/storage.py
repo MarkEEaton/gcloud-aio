@@ -139,7 +139,7 @@ class Storage:
         return data
 
     async def download(self, bucket: str, object_name: str, *,
-                       timeout: int = 1000,
+                       timeout: int = 500,
                        session: Optional[Session] = None) -> bytes:
         return await self._download(bucket, object_name, timeout=timeout,
                                     params={'alt': 'media'}, session=session)
